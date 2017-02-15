@@ -1,0 +1,14 @@
+<view class="logo" style="text-align:center">   
+  <image class="logo-img" src="../../utils/logo.jpg" mode='aspectFit'></image>
+</view>
+<view style="text-align:center">
+  <text class='logo_text'>开心顺风车 顺心上下班</text>
+</view>
+<view class="page_btn">
+    <button class="page_btn_drive"   bindtap="bindDriveBtnTap" hover-class="btn_tap">开   车</button>
+    <button class="page_btn_seat"  bindtap="bindTakeBtnTap" hover-class="btn_tap">乘   车</button>
+</view>
+<view class="page__ft" style="position: fixed;  bottom: .52em;  left: 0;  right: 0;">
+      <view class='text_ft' style="color: #999999; font-size: 14px; text-align: center;">Copyright © 第二党总支(策划)</view>
+      <view class='text_ft' style="color: #999999; font-size: 14px; text-align: center;">移动营销组(技术)</view>
+</view>

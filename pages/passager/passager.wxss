@@ -1,0 +1,93 @@
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userinfo-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.userinfo-nickname {
+  color: black;
+}
+.phone_label{
+    margin-left: 1px;
+    color:dark;
+}
+.passager_info {
+  padding: 10px 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.item{
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: auto;
+  align-items: center;
+  background-color: #ffffff;
+  margin-bottom: 5px;
+}
+.driver_base{
+  display: flex;
+  margin-bottom: 5px;
+  border-bottom: 1px #cccccc solid ;
+}
+.image_style{
+  width:40px;
+  height: 40px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 5px;
+  border-radius: 20px;
+}
+.description1{
+  font-size:18px;
+  margin-left: 10px;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.text_base{
+    font-size: 17x;
+    line-height: 34px;
+    color:#333333;
+}
+.text_createdtime{
+  display: block;
+  color: #7b7b7b;
+  font-size: 26rpx;
+}
+.description2{
+  font-size:18px;
+  margin-right: 5px;
+  flex-direction: column;
+  flex-grow: 1;
+  border-bottom: 1px #cccccc solid ;
+}
+.text_detail{
+    flex:2;
+    display: block;
+    margin-left: 30px;
+    color: #7b7b7b;
+    font-size: 26rpx;
+    line-height: 25px;
+}
+.text_detail_gotime{
+    flex:2;
+    display: block;
+    margin-left: 30px;
+    color: #ff6666;
+    font-size: 26rpx;
+    line-height: 25px;
+}
+.wait_style{
+  color:#ff9966;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  font-size: 26rpx;
+  line-height: 25px;
+}

@@ -1,0 +1,40 @@
+<view style='background-color:#f8f8f8'>
+    <view class="userinfo">
+        <image class="userinfo-avatar" src="{{userImg}}" background-size="cover"></image>
+        <text class="userinfo-nickname">欢迎{{userName}} 选择顺风车</text>
+    </view>
+    <view class='scroll-list'>
+        <scroll-view scroll-y="true" class="list" bindscrolltoupper="refresh" >
+            
+            <!--view class='driver_base'>
+                <image class="image_style" mode="aspectFit" src="{{userImg}}"></image>
+                <view >
+                    <text class='text_base'>{{userName}}</text>
+                </view>
+            </view-->
+
+            <view class="passager_info" style='background-color:#ffffff'>
+                    <text class="phone_label">手机号：</text>
+                    <input placeholder="{{phone_placehold}}" bindinput="bindInputTel" value='{{telephone}}' 
+                    style='{{phone_style}}' onblur='checkPhone'/>
+            </view>
+            <text style="color: #999999; font-size: 12px; margin-left:12px;">温馨提示：请下拉刷新，选择专列</text>
+            <view class="item" wx:for="{{teams}}" id = "{{item.id}}"bindtap="bindListBtn">
+                
+                <view class='driver_base'>
+                    <image class="image_style" mode="aspectFit" src="{{item.img}}"></image>
+                    <view class="description1">
+                        <text class='text_base'>{{item.name}}开车</text>
+                        <text class='text_createdtime'>发布时间 {{item.createdAt}}</text>
+                    </view>
+                </view>
+                <view class="description2">
+                    <text class='text_detail'>{{item.start}}出发<br/>
+                        途经{{item.end}}</text> 
+                    <text class='text_detail_gotime'>发车时间{{item.goTime}}</text>
+                </view>
+                <view class='wait_style'>正在等待乘客,{{item.seatNum}}个座位</view>
+            </view>
+        </scroll-view>
+    </view>
+</view>

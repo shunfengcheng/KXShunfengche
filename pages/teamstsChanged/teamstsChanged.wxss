@@ -1,0 +1,85 @@
+.image_style{
+    width:40px;
+    height: 40px;
+    margin-left: 10px;
+    margin-top:10px;
+}
+.title_style{
+    text-align:center;
+    font-size: 25px;
+}
+.driverInfo{
+    display: flex;
+    background-color: #ffffff;
+    margin-left:10px;
+    margin-right:10px;
+}
+.wait_list_info{
+    border-bottom: 1rpx solid #D9D9D9;
+}
+.icon_comm_style{
+    margin-left: 20px;
+}
+.image_style{
+    width:40px;
+    height: 40px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 5px;
+    border-radius: 20px;
+}
+.description{
+  margin-left: 10px;
+  margin-right: 5px;
+  margin-top: 10px;
+  flex-direction: column;
+}
+.passagerInfo{
+    margin-top: 5px;
+    display: flex;
+    margin-left:10px;
+    margin-right:10px;
+    background-color: #ffffff
+}
+.trip_base{
+    flex:1;
+    font-size: 34rpx;
+    color: #7b7b7b;
+    text-align: left;
+    margin-left: 5px;
+    line-height: 20px;
+}
+.text_base{
+    flex:1;
+    font-size: 34rpx;
+    color: #000000;
+    text-align: left;
+}
+.text_detail{
+    flex:2;
+    display: block;
+    color: #7b7b7b;
+    font-size: 26rpx;
+}
+.text_detail_gotime{
+    flex:2;
+    display: block;
+    color: #ff6666;
+    font-size: 26rpx;
+    line-height: 34rpx;
+}
+
+.wait_page_btn{
+    margin-top: 15px;
+}
+.wait_page_cancel_btn{
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #66cc99;
+    font-size: 20px;
+    color:white;
+}
+.btn_tap{
+    background-color: #339966
+}

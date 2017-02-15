@@ -1,0 +1,32 @@
+<view style='background-color:#f8f8f8'>
+    <view class='title_style'>与您一路的开心er</view>
+    <view wx:if="{{team.passengers.length == 0}}">
+        <text style='color: #ff6666; margin-left:10px;margin-top:50px;'>开心们刚完成工作，请稍等...</text>
+    </view>
+    <view wx:else>
+        <view class="passagerInfo" wx:for="{{team.passengers}}" hidden='{{item.name =="noPassenger"}}'>
+            <view>
+                <image class="image_style" mode="aspectFit" src="{{item.img}}"></image>
+            </view>
+            <view class="description">
+                <text class='text_base'>{{item.name}}</text>
+                <text class='text_detail'>电话：{{item.phone}}</text>
+            </view>
+        </view>
+    </view>
+    <view class='title_style' style='margin-top:40px'>您的列车长</view>
+    <view class='driverInfo'>
+        <image class="image_style" src="{{team.driver.img}}" ></image>
+        <view style='margin-left:5px'>
+            <text class='text_base'>{{team.driver.name}}</text>
+            <text class='text_detail'>电话：{{team.driver.phone}}<br/>
+            {{team.start}}出发，途经{{team.end}}</text>
+            <text class='text_detail_gotime' >发车时间{{team.goTime}}</text>
+            <text class='text_detail'>车牌号：{{team.driver.carnum}}  {{team.driver.carcolor}},车型：{{team.driver.cartype}}</text>
+        </view>
+    </view>
+    <view style='margin-bottom:50px'>
+        <button class='wait_page_refresh_btn' bindtap="bindDriverRefreshBtn" hover-class="btn_tap">刷新</button>
+        <button class='wait_page_cancel_btn' bindtap="bindDriverCancelBtn" hover-class="btn_tap">离开</button>
+    </view>
+</view>
