@@ -8,9 +8,73 @@ Page({
     userInfo: {},
   },
 
+  //体验版设置，应用开放时间在下午3点到到24点之间
+  tempControl:function(){
+    
+    var that = this
+    var d = new Date();
+    var tempHour = d.getHours();
+    if(tempHour >= 0 && tempHour < 15){
+        wx.showModal({
+          title: '内测版',
+          content: '为保证体验，请在15点后使用！',
+          showCancel:false,
+          success: function(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              that.setData({
+                btn_disabled: true
+              })
+              console.log("---" + that.data.btn_disabled);
+            }
+          }
+        })
+    }else{
+      that.setData({btn_disabled: false})
+    }
+  },  
+
+  //体验版设置，为保证使用，限制人数在在100人以内
+  tempUserControl:function(){
+
+      var that = this;
+
+      var query =new SERVER.Query('User');
+      
+      query.count().then(function (count) {
+          console.log("---user count is:" + count);
+          if(count <=100){
+              that.setData({btn_disabled: false})
+          }else{
+            wx.showModal({
+              title: '内测版',
+              content: '已达使用人数上限，暂无法体验。\r\n正式版将近期发布,请耐心等待！',
+              showCancel:false,
+              success: function(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                  that.setData({
+                    btn_disabled: true
+                  })
+                  console.log("---" + that.data.btn_disabled);
+                }
+              }
+            })
+          }
+
+      }, function (error) {
+      });
+
+  },
+
   //页面初始化start
   onLoad: function () 
   {
+    
+    
+    this.tempControl();
+    this.tempUserControl();
+
     console.log('driver onLoad')
     var that = this
     //调用应用实例的方法获取全局数据,（微信id，头像url，昵称等）
