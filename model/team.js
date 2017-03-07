@@ -7,6 +7,9 @@ class Team extends SERVER.Object {
   set teamsts(value) {
     this.set('teamsts', value);
   }
+  get objectId(){
+    return this.get('objectId');
+  }
 }
 SERVER.Object.register(Team, 'Team');
 module.exports = Team;
