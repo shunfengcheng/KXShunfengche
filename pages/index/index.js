@@ -77,9 +77,9 @@ Page({
   {
     
     //如果return true,表示达到限制条件，不再往下执行
-    if(this.tempControl()){
-      return;
-    }
+    //if(this.tempControl()){
+    //  return;
+    //}
     if(this.tempUserControl()){
       return;
     }
