@@ -17,7 +17,7 @@ Page({
                     act:'发起',});
       this.setData({team: app.globalData.team})    
       //console.log(app.globalData.team);
-      //console.log('thisteam'+this.data.team);      
+      console.log('thisteam'+this.data.team);      
       if(this.data.team.teamsts =='C')
       {
           this.setData({sts: '取消'})    

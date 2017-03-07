@@ -29,8 +29,10 @@ Page({
             }
           }
         })
+        return true;
     }else{
       that.setData({btn_disabled: false})
+      return false;
     }
   },  
 
@@ -45,6 +47,7 @@ Page({
           console.log("---user count is:" + count);
           if(count <=100){
               that.setData({btn_disabled: false})
+              return false;
           }else{
             wx.showModal({
               title: '内测版',
@@ -60,9 +63,11 @@ Page({
                 }
               }
             })
+            return true;
           }
 
       }, function (error) {
+        return true;
       });
 
   },
@@ -71,9 +76,13 @@ Page({
   onLoad: function () 
   {
     
-    
-    this.tempControl();
-    this.tempUserControl();
+    //如果return true,表示达到限制条件，不再往下执行
+    if(this.tempControl()){
+      return;
+    }
+    if(this.tempUserControl()){
+      return;
+    }
 
     console.log('driver onLoad')
     var that = this

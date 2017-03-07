@@ -89,7 +89,31 @@ Page({
         }).catch(console.error);
     },
 
-        //刷新按钮事件
+    //给司机拨打电话
+    bindCallDriver:function(e){
+        var iphone = e.currentTarget.dataset.num;
+        console.log("----phone :" + iphone);
+
+        if(iphone != null){
+            wx.makePhoneCall({
+                phoneNumber: iphone
+            })
+        }
+    },
+    //给乘客拨打电话
+    bindCallPassager:function(e){
+        
+        var iphone = e.currentTarget.dataset.num;
+        console.log("----phone :" + iphone);
+
+        if(iphone != null){
+            wx.makePhoneCall({
+                phoneNumber: iphone
+            })
+        }
+    },
+
+    //刷新按钮事件
     bindDriverRefreshBtn:function(e){
         wx.showNavigationBarLoading()
         console.log('触发了乘客刷新按钮')

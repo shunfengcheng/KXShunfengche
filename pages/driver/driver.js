@@ -174,14 +174,11 @@ Page({
     //确认载客按钮触发事件
     bindStarGoBtn:function(e)
     {
-        wx.showToast({
-            title: '正在创建行程',
-            icon: 'loading',
-            duration: 3000
-        });
+        
         //获得当前user
         const user = User.current();
-        if(user.get('currentteam')!='')
+       
+        if(user.get('currentTeam')!='')
         {
             //弹出提示框，提示是否取消顺风车服务
             wx.showModal({
@@ -195,11 +192,20 @@ Page({
                         //that.driverCancelTeam();
                         wx.redirectTo({
                             url: '../teamstsChanged/teamstsChanged'
-                        })      
+                        })  
+                            
                     }
                 }
             });
+            return;
         }
+
+        wx.showToast({
+            title: '正在创建行程',
+            icon: 'loading',
+            duration: 3000
+        });
+
         //用户信息
         var name = this.data.name//昵称
         var img=wx.getStorageSync('img')//头像
