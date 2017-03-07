@@ -5,25 +5,25 @@
     </view>
     <view wx:else>
         <view class="passagerInfo" wx:for="{{team.passengers}}" hidden='{{item.name =="noPassenger"}}'>
+            <image class="image_style" src="{{item.img}}"></image>
             <view>
-                <image class="image_style" mode="aspectFit" src="{{item.img}}"></image>
-            </view>
-            <view class="description">
                 <text class='text_base'>{{item.name}}</text>
                 <text class='text_detail'>电话：{{item.phone}}</text>
             </view>
+            <image class="image_style_1" src="../../utils/phone.jpg" bindtap="bindCallPassager" data-num="{{item.phone}}"></image>       
         </view>
     </view>
     <view class='title_style' style='margin-top:40px'>您的列车长</view>
     <view class='driverInfo'>
         <image class="image_style" src="{{team.driver.img}}" ></image>
-        <view style='margin-left:5px'>
+        <view>
             <text class='text_base'>{{team.driver.name}}</text>
             <text class='text_detail'>电话：{{team.driver.phone}}<br/>
             {{team.start}}出发，途经{{team.end}}</text>
             <text class='text_detail_gotime' >发车时间{{team.goTime}}</text>
             <text class='text_detail'>车牌号：{{team.driver.carnum}}  {{team.driver.carcolor}},车型：{{team.driver.cartype}}</text>
         </view>
+        <image class="image_style_1" src="../../utils/phone.jpg" bindtap="bindCallDriver" data-num="{{team.driver.phone}}"></image>
     </view>
     <view style='margin-bottom:50px'>
         <button class='wait_page_refresh_btn' bindtap="bindDriverRefreshBtn" hover-class="btn_tap">刷新</button>

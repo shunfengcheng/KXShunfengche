@@ -2,12 +2,7 @@
     text-align:center;
     font-size: 25px;
 }
-.driverInfo{
-    display: flex;
-    background-color: #ffffff;
-    margin-left:10px;
-    margin-right:10px;
-}
+
 .wait_list_info{
     border-bottom: 1rpx solid #D9D9D9;
 }
@@ -15,12 +10,22 @@
     margin-left: 20px;
 }
 .passagerInfo{
-    margin-top: 5px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    margin-left:10px;
+    margin-right:10px;
+    background-color: #ffffff
+}
+.driverInfo{
+    justify-content: space-between;
+    align-items: center;
     display: flex;
     background-color: #ffffff;
     margin-left:10px;
     margin-right:10px;
 }
+
 .image_style{
     width:40px;
     height: 40px;
@@ -29,11 +34,13 @@
     margin-top:10px;
     border-radius: 20px;
 }
-.description{
-  margin-left: 10px;
-  margin-right: 5px;
-  margin-top: 10px;
-  flex-direction: column;
+.image_style_1{
+    width:30px;
+    height: 30px;
+    margin-left: 20px;
+    margin-right: 5px;
+    margin-top:10px;
+    border-radius: 15px;
 }
 .text_base{
     flex:1;

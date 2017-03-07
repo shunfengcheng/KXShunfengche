@@ -117,6 +117,29 @@ Page({
         this.bindDriverRefreshBtn();
     },
 
+    //给司机拨打电话
+    bindCallDriver:function(e){
+        var iphone = e.currentTarget.dataset.num;
+        console.log("----phone :" + iphone);
+
+        if(iphone != null){
+            wx.makePhoneCall({
+                phoneNumber: iphone
+            })
+        }
+    },
+    //给乘客拨打电话
+    bindCallPassager:function(e){
+        
+        var iphone = e.currentTarget.dataset.num;
+        console.log("----phone :" + iphone);
+
+        if(iphone != null){
+            wx.makePhoneCall({
+                phoneNumber: iphone
+            })
+        }
+    },
     //发车按钮事件
     bindDriverGoBtn:function(e){
         console.log('触发了司机发车按钮')
