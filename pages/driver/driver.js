@@ -5,7 +5,7 @@ const Team = require('../../model/team');
 
 Page({
     data:{
-        array_goAddr:['金唐大厦','七里庄','金玉大厦','东单'],
+        array_goAddr:['金唐大厦','七里庄'],
         index_goAddr:0,        
         array_arrAddr:['西局地铁站','菜户营桥北','菜户营桥东','七里庄'],
         index_arrAddr:0,

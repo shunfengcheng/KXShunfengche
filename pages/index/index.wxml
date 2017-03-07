@@ -9,6 +9,7 @@
     <button class="page_btn_seat"  bindtap="bindTakeBtnTap" disabled="{{btn_disabled}}" hover-class="btn_tap">乘   车</button>
 </view>
 <view class="page__ft" style="position: fixed;  bottom: .52em;  left: 0;  right: 0;">
-      <view class='text_ft' style="color: #999999; font-size: 14px; text-align: center;">Copyright © 第二党总支(策划)</view>
-      <view class='text_ft' style="color: #999999; font-size: 14px; text-align: center;">移动营销组(技术)</view>
+      <view class='text_ft' style="color: #999999; font-size: 14px; text-align: center;">v0.3.0 体验版</view>
+      <view class='text_ft' style="color: #999999; font-size: 14px; text-align: center;">Copyright © 中国农业银行</view>
+      <view class='text_ft' style="color: #999999; font-size: 14px; text-align: center;">软件开发中心 第二党总支</view>
 </view>
