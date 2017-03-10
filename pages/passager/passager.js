@@ -96,9 +96,9 @@ Page({
         })
         this.loadTeams();
     },
-    onPullDownRefresh: function(){
-        this.refresh();
-    },
+    // onPullDownRefresh: function(){
+    //     this.refresh();
+    // },
 
     bindInputTel:function(e){
         console.log('driver input tel，携带值为', e.detail.value)
