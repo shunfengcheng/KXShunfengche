@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/regist/regist",
     "pages/driver/driver",
     "pages/passager/passager",
     "pages/waitdriver/waitdriver",

@@ -87,10 +87,11 @@ Page({
 
     onLoad:function(e){
         var passagerTel = wx.getStorageSync('tel');
+        var phone = wx.getStorageSync('phone');
         var userimg = wx.getStorageSync('img');
         var username = wx.getStorageSync('name');
         this.setData({
-            telephone:passagerTel,
+            telephone:phone,
             userImg:userimg,
             userName:username
         })
