@@ -1,0 +1,18 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/driver/driver",
+    "pages/passager/passager",
+    "pages/waitdriver/waitdriver",
+    "pages/waitpassager/waitpassager",
+    "pages/teamstsChanged/teamstsChanged"
+  ],
+  "window": {
+    "backgroundTextStyle":"light",
+    "navigationBarTitleText": "开心公益顺风车",
+    "navigationBarBackgroundColor": "#66cc99",
+    "navigationBarTextStyle":"white",
+    "backgroundColor": "#f8f8f8"
+
+  }
+}

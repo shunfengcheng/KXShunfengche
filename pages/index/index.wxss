@@ -1,0 +1,32 @@
+.logo{
+  margin-top: 80px;
+}
+.logo_text{
+   font-size:30px;
+    font-weight:bold;
+    color:#66cc99;
+}
+.page_btn{
+  margin-top: 60px;
+  display: flex
+}
+
+.page_btn_drive{
+  width: 40%;
+  margin-left: 25px;
+  font-size: 20px;
+  background-color:#66cc99;
+  color:white;
+}
+
+.page_btn_seat{
+  width: 40%;
+  margin-right: 25px;
+  font-size: 20px;
+  background-color:#66cc99;
+  color:white;
+}
+
+.btn_tap{
+  background-color:#339966;
+}
