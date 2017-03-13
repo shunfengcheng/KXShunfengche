@@ -11,4 +11,5 @@
 <view class="page__ft" style="position: fixed;  bottom: .52em;  left: 0;  right: 0;">
       <view class='text_ft' style="color: #999999; font-size: 14px; text-align: center;">v0.3.0 体验版</view>
       <view class='text_ft' style="color: #999999; font-size: 14px; text-align: center;">Copyright © 中国农业银行软件开发中心</view>
+      <view class='text_ft' style="color: #999999; font-size: 14px; text-align: center;">说明：本版为内测版，后台云服务有访问次数限制和休眠机制。如遇bug请重试或反馈至kxsfc_abc@qq.com</view>
 </view>
