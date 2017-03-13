@@ -83,9 +83,9 @@ Page({
     // if(this.tempControl()){
     //   return;
     // }
-    if(this.tempUserControl()){
-      return;
-    }
+    // if(this.tempUserControl()){
+    //   return;
+    // }
 
     console.log('driver onLoad')
     var that = this
