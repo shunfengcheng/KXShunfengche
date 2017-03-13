@@ -6,6 +6,9 @@ const { User } = require('../../utils/leancloud-storage');
 Page({
   data: {
     userInfo: {},
+
+    lastTapDiffTime1:0,  //记录开车按钮的上一次点击时间
+    lastTapDiffTime2:0,  //记录乘车按钮的上一次点击时间
   },
 
   //体验版设置，应用开放时间在下午3点到到24点之间
@@ -77,9 +80,9 @@ Page({
   {
     
     //如果return true,表示达到限制条件，不再往下执行
-    if(this.tempControl()){
-      return;
-    }
+    // if(this.tempControl()){
+    //   return;
+    // }
     if(this.tempUserControl()){
       return;
     }
@@ -143,27 +146,52 @@ Page({
   },//页面初始化end
 
   //开车按钮触发事件start
-  bindDriveBtnTap: function () 
+  bindDriveBtnTap: function (e) 
   {
-        wx.setStorageSync('name', this.data.userInfo.nickName);
-        wx.setStorageSync('img', this.data.userInfo.avatarUrl);
-   
+    var curTime = e.timeStamp;
+    var lastTime = this.data.lastTapDiffTime1;
+
+    if(lastTime > 0 && (curTime - lastTime < 300)){
+        //两次时间间隔小于300毫秒，认为是双击事件
+        console.log("===db tap");
+        return;
+    }
+
+    this.setData({lastTapDiffTime1:curTime});
+    
+    wx.setStorageSync('name', this.data.userInfo.nickName);
+    wx.setStorageSync('img', this.data.userInfo.avatarUrl);
+
     //转入行程创建界面
     wx.navigateTo({
       url: '../driver/driver'
     })
+   
+    
   },//开车按钮触发事件end
 
   //乘客按钮触发事件start
-  bindTakeBtnTap:function () 
+  bindTakeBtnTap:function (e) 
   {
-      wx.setStorageSync('name', this.data.userInfo.nickName);
-      wx.setStorageSync('img', this.data.userInfo.avatarUrl);
-   
+    var curTime = e.timeStamp;
+    var lastTime = this.data.lastTapDiffTime2;
+
+    if(lastTime > 0 && (curTime - lastTime < 300)){
+        //两次时间间隔小于300毫秒，认为是双击事件
+        console.log("===db tap");
+        return;
+    }
+        
+     
+    this.setData({lastTapDiffTime2:curTime});
+
+    wx.setStorageSync('name', this.data.userInfo.nickName);
+    wx.setStorageSync('img', this.data.userInfo.avatarUrl);
     //页面定向到乘客选择页
     wx.navigateTo({
       url: '../passager/passager'
     })
+    
   },  //乘客按钮触发事件end
 
  

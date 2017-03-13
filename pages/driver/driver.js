@@ -26,7 +26,9 @@ Page({
         carnum_style:'border:',
         carnum_placehold:'请输入车牌号后四位',
         gotime_style:'',
-        
+
+
+        lastTapDiffTime1:0,  //记录开车按钮的上一次点击时间  
     },
 
     
@@ -174,129 +176,140 @@ Page({
     //确认载客按钮触发事件
     bindStarGoBtn:function(e)
     {
+        var curTime = e.timeStamp;
+        var lastTime = this.data.lastTapDiffTime1;
         
-        //获得当前user
-        const user = User.current();
-       
-        if(user.get('currentTeam')!='')
-        {
-            //弹出提示框，提示是否取消顺风车服务
-            wx.showModal({
-                title: '不能新建行程',
-                content: '当前有未处理完成的行程',
-                showCancel:false,
-                success: function (res) {
-                    console.log(res);
-                    if (res.confirm) {
-                        console.log('前往行程页面')
-                        //that.driverCancelTeam();
-                        wx.redirectTo({
-                            url: '../teamstsChanged/teamstsChanged'
-                        })  
-                            
-                    }
-                }
-            });
+        if(lastTime > 0 && (curTime - lastTime < 300)){
+            //两次时间间隔小于300毫秒，认为是双击事件
+            console.log("===db tap");
             return;
         }
+        this.setData({lastTapDiffTime1:curTime});
 
-        wx.showToast({
-            title: '正在创建行程',
-            icon: 'loading',
-            duration: 3000
-        });
-
-        //用户信息
-        var name = this.data.name//昵称
-        var img=wx.getStorageSync('img')//头像
-        var phone = this.data.telephone//手机
-        var carnum=this.data.carNum//车牌
-        var carcolor=this.data.array_carColor[this.data.index_carColor]//车颜色
-        var cartype=this.data.carType//车型
-        //行程信息
-        var start=this.data.array_goAddr[this.data.index_goAddr]//出发地
-        var end=this.data.array_arrAddr[this.data.index_arrAddr]//目的地
-        var goTime=this.data.goTime//时间
-
-        //检查必输项；给临时变量赋值，在上传时使用
-        var itel = this.data.telephone && this.data.telephone.trim()
-        if(!this.checkPhone(itel)){       
-            return;}
-        var icarnum = this.data.carNum && this.data.carNum.trim()
-        if (!this.checkCarnum()) {
-            return;}
-        //var igotime = this.data.goTime && this.data.goTime.trim()
-       
-
-        //重新更新保存一份本地存储文件
-        wx.setStorageSync('carcolor',this.data.index_carColor)//车颜色代码
-        wx.setStorageSync('cartype',this.data.carType)//车型
-        wx.setStorageSync('gotime',this.data.goTime)//发车时间
-        wx.setStorageSync('tel',this.data.telephone)//电话
-        wx.setStorageSync('carnum',this.data.carNum)//车牌
-        wx.setStorageSync('seatnum',this.data.index_seatNum)//座位数
-        //建立与服务器的连接控制对象
-        console.log('--------start server---------')
-
-        //更新user数据
-        user.set('username', name);
-        user.set('img', img);
-        user.set('phone', phone);
-        user.set('carnum', carnum);
-        user.set('carcolor', carcolor);
-        user.set('cartype', cartype);
-        //user.save();
-        var id = user.getObjectId() ;
-
-        var acl = new SERVER.ACL();
-        acl.setPublicReadAccess(true);
-        acl.setPublicWriteAccess(true);
-
-        //acl.setReadAccess(SERVER.User.current(), true);
-        //acl.setWriteAccess(SERVER.User.current(), true); 
+            //获得当前user
+            const user = User.current();
         
-         new Team({
-             'teamsts':'N',//行程状态
-             'start':start,//起点
-             'end':end,//终点终点
-             'goTime':goTime,//出发时间
-             //rem//备注
-             'seatnum':Number(this.data.index_seatNum)+1,
-             'driver':{id,name,img,phone,carnum,carcolor,cartype} ,
-             'passengers':[]
-         }).setACL(acl).save().then((team)=>{
-             var app = getApp();
-             app.globalData.team = team;
-            console.log('team值为', app.globalData.team)  
-            user.set('currentTeam', team.getObjectId());
-            user.save();
-            //页面跳转
-            wx.navigateTo({
-                url: '../waitdriver/waitdriver',
-                success: function(res){
-                    // success
-                    wx.setStorageSync('driverstatus', '1')
-                    setTimeout(function(){
-                        wx.showToast({
-                            title: '行程创建成功',
-                            icon: 'success',
-                            duration: 1000
-                        })
-                    },1000)
-                },
-                fail: function() {
-                    // fail
-                },
-                complete: function() {
-                    // complete
-                }
-            })
+            if(user.get('currentTeam')!='')
+            {
+                //弹出提示框，提示是否取消顺风车服务
+                wx.showModal({
+                    title: '不能新建行程',
+                    content: '当前有未处理完成的行程',
+                    showCancel:false,
+                    success: function (res) {
+                        console.log(res);
+                        if (res.confirm) {
+                            console.log('前往行程页面')
+                            //that.driverCancelTeam();
+                            wx.redirectTo({
+                                url: '../teamstsChanged/teamstsChanged'
+                            })  
+                                
+                        }
+                    }
+                });
+                return;
+            }
 
-         }).catch(console.error);    
-        console.log('--------end server---------')     
+            wx.showToast({
+                title: '正在创建行程',
+                icon: 'loading',
+                duration: 3000
+            });
+
+            //用户信息
+            var name = this.data.name//昵称
+            var img=wx.getStorageSync('img')//头像
+            var phone = this.data.telephone//手机
+            var carnum=this.data.carNum//车牌
+            var carcolor=this.data.array_carColor[this.data.index_carColor]//车颜色
+            var cartype=this.data.carType//车型
+            //行程信息
+            var start=this.data.array_goAddr[this.data.index_goAddr]//出发地
+            var end=this.data.array_arrAddr[this.data.index_arrAddr]//目的地
+            var goTime=this.data.goTime//时间
+
+            //检查必输项；给临时变量赋值，在上传时使用
+            var itel = this.data.telephone && this.data.telephone.trim()
+            if(!this.checkPhone(itel)){       
+                return;}
+            var icarnum = this.data.carNum && this.data.carNum.trim()
+            if (!this.checkCarnum()) {
+                return;}
+            //var igotime = this.data.goTime && this.data.goTime.trim()
+        
+
+            //重新更新保存一份本地存储文件
+            wx.setStorageSync('carcolor',this.data.index_carColor)//车颜色代码
+            wx.setStorageSync('cartype',this.data.carType)//车型
+            wx.setStorageSync('gotime',this.data.goTime)//发车时间
+            wx.setStorageSync('tel',this.data.telephone)//电话
+            wx.setStorageSync('carnum',this.data.carNum)//车牌
+            wx.setStorageSync('seatnum',this.data.index_seatNum)//座位数
+            //建立与服务器的连接控制对象
+            console.log('--------start server---------')
+
+            //更新user数据
+            user.set('username', name);
+            user.set('img', img);
+            user.set('phone', phone);
+            user.set('carnum', carnum);
+            user.set('carcolor', carcolor);
+            user.set('cartype', cartype);
+            //user.save();
+            var id = user.getObjectId() ;
+
+            var acl = new SERVER.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+
+            //acl.setReadAccess(SERVER.User.current(), true);
+            //acl.setWriteAccess(SERVER.User.current(), true); 
+            
+            new Team({
+                'teamsts':'N',//行程状态
+                'start':start,//起点
+                'end':end,//终点终点
+                'goTime':goTime,//出发时间
+                //rem//备注
+                'seatnum':Number(this.data.index_seatNum)+1,
+                'driver':{id,name,img,phone,carnum,carcolor,cartype} ,
+                'passengers':[]
+            }).setACL(acl).save().then((team)=>{
+                var app = getApp();
+                app.globalData.team = team;
+                console.log('team值为', app.globalData.team)  
+                user.set('currentTeam', team.getObjectId());
+                user.save();
+                //页面跳转
+                wx.navigateTo({
+                    url: '../waitdriver/waitdriver',
+                    success: function(res){
+                        // success
+                        wx.setStorageSync('driverstatus', '1')
+                        setTimeout(function(){
+                            wx.showToast({
+                                title: '行程创建成功',
+                                icon: 'success',
+                                duration: 1000
+                            })
+                        },1000)
+                    },
+                    fail: function() {
+                        // fail
+                    },
+                    complete: function() {
+                        // complete
+                    }
+                })
+
+            }).catch(console.error);    
+            console.log('--------end server---------')     
 
         
      
+        
+        
     },
 
 
