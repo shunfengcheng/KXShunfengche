@@ -369,7 +369,7 @@ Page({
             user.save();
 
             //注册成功，跳转到index页面
-            wx.navigateTo({ url: '../index/index' });
+            wx.redirectTo({ url: '../index/index?userInfo=user' });
         }, function (error) {
         });
 
