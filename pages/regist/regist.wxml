@@ -1,0 +1,90 @@
+<view class="app">
+  <view class="title">
+    <text>请注册个人信息后继续</text>
+  </view>
+  <form class="element form-vessel">
+    <view class="element input-ele js-form-ele must style">
+      <input type="text" placeholder="真实姓名" bindinput="bindInputUname" value='{{username}}' placeholder="{{username_placehold}}" style='{{username_style}}' onblur="checkUsername" />
+    </view>
+    <view class="element form-vessel genderst">
+      <view class="element input-ele js-form-ele must style">
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for-items="{{items}}">
+            <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+          </label>
+        </radio-group>
+      </view>
+    </view>
+
+    <!--
+    <view class="element input-ele js-form-ele must style">
+      <input type="text" placeholder="员工卡号" bindinput="bindInputcompID" value='{{companycardID}}' placeholder="{{companycardID_placehold}}" style='{{companycardID_style}}' onblur="checkCompanycardID" />
+    </view>
+    -->
+    <view class="element input-ele js-form-ele must style">
+      <input type="text" placeholder="{{phone_placehold}}" bindinput="bindInputTel" value='{{phone}}' style='{{phone_style}}' onblur="checkPhone" />
+    </view>
+    <view class="element input-ele js-form-ele must style apartment">
+      <text> 所在部室</text>
+      <picker style='float:right;' mode="selector" range="{{array}}" value="{{index}}" bindchange="listenerPickerSelected">
+        <text style='color:#999999;margin-right:12px'>{{array[index]}} ></text>
+      </picker>
+    </view>
+    <view class="element form-vessel genderst">
+      <view class="element input-ele js-form-ele must style">
+        <radio-group class="radio-group car-radio" bindchange="onChangeShowState">
+
+          <!--<text>是否有车 </text>-->
+          <label class="radio" wx:for-items="{{cars}}">
+            <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+          </label>
+        </radio-group>
+      </view>
+
+      <!--  输入车信息 -->
+      <view class="bright789_view_hide{{showView?'bright789_view_show':''}}">
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+          <view class="weui-cell__hd">
+            <view class="driver_infor_label"> 车 牌 号</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input placeholder="{{carnum_placehold}}" bindinput="bindInputCarNum" value='{{carNum}}' maxlength="4" style="text-align:right;{{carnum_style}}" onblur="checkCarnum" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="driver_infor_label"> 颜 　 色</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker style='float:right;' mode="selector" bindchange="bindCarColorChange" value="{{carColor}}" range="{{array_carColor}}">
+              <text style='color:#999999;margin-right:10px'>{{array_carColor[index_carColor]}}</text>
+              <text>></text>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="driver_infor_label"> 车 　 型</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input style='text-align:right;color:#999999;margin-right:10px' placeholder="请输入车型" bindinput="bindInputCarType" value='{{carType}}' />
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="element form-vessel page_btn">
+      <view class="element input-ele js-form-ele must style">
+        <button class="page_btn_register" bindtap="bindRegistBtn">注 册</button>
+      </view>
+    </view>
+  </form>
+</view>
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+
+  <!--对话框标题-->
+  <view class="title-view">
+    <view class="toast-view">
+      {{warnmessage}}
+    </view>
+  </view>
+</view>
