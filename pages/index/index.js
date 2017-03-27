@@ -123,10 +123,12 @@ Page({
           console.log('isregistered:' + isregistered);
 
           //判断是否注册，若未注册则进入注册界面
-          //if (isregistered != true) {
-          //  console.log('enter regist page');
-          //  wx.redirectTo({ url: '../regist/regist' });
-          //}
+
+          // if (isregistered != true) {
+          //   console.log('enter regist page');
+          //   wx.redirectTo({ url: '../regist/regist' });
+          // }
+
           if (teamid != '') {
             //获取行程对象        
             var team = SERVER.Object.createWithoutData('Team', teamid).fetch().then(function (t) {
