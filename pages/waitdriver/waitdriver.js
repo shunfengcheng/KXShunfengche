@@ -74,7 +74,7 @@ Page({
         {
             this.driverCancelTeam();
             wx.showToast({
-                        title: '已取消行程',
+                        title: '已取消',
                         duration: 1000
                     })
         }
@@ -92,9 +92,9 @@ Page({
         //         that.data.team =null,
         //         app.globalData.team=null
 
-        //         //弹出提示框，提示已取消顺风车服务
+        //         //弹出提示框，提示已取消
         //         wx.showToast({
-        //             title: '已取消行程，请重新选择',
+        //             title: '已取消活动，请重新选择',
         //             icon: 'loading',
         //             duration: 1000
         //         })
@@ -107,7 +107,7 @@ Page({
     bindDriverRefreshBtn:function(e){
 
         wx.showNavigationBarLoading()
-        console.log('触发了司机刷新按钮')
+        console.log('触发了刷新按钮')
         this.loadTeamInfo();
         setTimeout(function(){wx.hideNavigationBarLoading();wx.stopPullDownRefresh();}, 2000);
    
@@ -142,7 +142,7 @@ Page({
     },
     //发车按钮事件
     bindDriverGoBtn:function(e){
-        console.log('触发了司机发车按钮')
+        console.log('触发了出发按钮')
 
         var that =this;
 
@@ -150,16 +150,16 @@ Page({
         that.data.waitsts = 1
 
 
-        //弹出提示框，提示是否取消顺风车服务
+        //弹出提示框，提示是否取消组队
         wx.showModal({
-            title: '确认发车',
-            content: '感谢您提供顺风车服务，请确认是否发车',
+            title: '确认出发',
+            content: '感谢您提供组队服务，请确认是否出发',
             confirmText: "是",
             cancelText: "否",
             success: function (res) {
                 console.log(res);
                 if (res.confirm) {//用户点击确定-start
-                    console.log('用户点击了确认发车')
+                    console.log('用户点击了确认出发')
                     //teamsts置Y 
                     new SERVER.Query(Team)
 
@@ -172,8 +172,8 @@ Page({
                         if(t[0].get('passengers').length<1)
                         {
                             wx.showModal({
-                                title: '无法发车',
-                                content: '没有乘客',
+                                title: '无法出发',
+                                content: '没有队员',
                                 showCancel:false
                             })
                             return;
@@ -192,7 +192,7 @@ Page({
 
                 }//用户点击确定-end
                 else{
-                    console.log('用户点击取消，继续等待乘客')
+                    console.log('用户点击取消，继续等待队员')
                 }
             }
         });
@@ -200,16 +200,16 @@ Page({
 
     //取消按钮事件
     bindDriverCancelBtn:function(e){
-        console.log('触发了司机取消按钮')
+        console.log('触发了取消按钮')
 
         var that = this;
 
         that.data.waitsts = 2
 
-        //弹出提示框，提示是否取消顺风车服务
+        //弹出提示框，提示是否取消
         wx.showModal({
             title: '确认取消',
-            content: '请确认是否取消顺风车服务',
+            content: '请确认是否取消队伍',
             confirmText: "是",
             cancelText: "否",
             success: function (res) {
@@ -221,7 +221,7 @@ Page({
                         url: '../teamstsChanged/teamstsChanged?role=1'
                     })      
                 }else{
-                    console.log('用户点击取消，继续等待乘客')
+                    console.log('用户点击取消，继续等待队员')
                 }
             }
         });
