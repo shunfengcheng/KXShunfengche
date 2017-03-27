@@ -194,8 +194,8 @@ Page({
             {
                 //弹出提示框，提示是否取消顺风车服务
                 wx.showModal({
-                    title: '不能新建行程',
-                    content: '当前有未处理完成的行程',
+                    title: '不能新建活动',
+                    content: '当前有未处理完成的活动',
                     showCancel:false,
                     success: function (res) {
                         console.log(res);
@@ -213,7 +213,7 @@ Page({
             }
 
             wx.showToast({
-                title: '正在创建行程',
+                title: '正在创建活动',
                 icon: 'loading',
                 duration: 3000
             });
@@ -290,7 +290,7 @@ Page({
                         wx.setStorageSync('driverstatus', '1')
                         setTimeout(function(){
                             wx.showToast({
-                                title: '行程创建成功',
+                                title: '活动创建成功',
                                 icon: 'success',
                                 duration: 1000
                             })
