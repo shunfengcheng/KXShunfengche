@@ -118,27 +118,36 @@ Page({
       //读取当前用户的teamid，没有id无特殊处理；有id：查询team数据赋值给全局team，根据用户角色跳转到乘客/司机等待页面，再由等待页面跳转到信息展示页面；
       var teamid=user.get('currentTeam');
       console.log('teamid:'+teamid );
-      if(teamid!='')
-      {
-        //获取行程对象        
-        var team = SERVER.Object.createWithoutData('Team', teamid).fetch().then(function (t) {        
-          //为全局team变量赋值
-          var app = getApp();
-          app.globalData.team = t;
-          console.log('teamdid:'+t.get('driver').id );
-          console.log('uid:'+user.getObjectId() );
-          //判断userid与司机id是否一致，如果一致，显示司机等待页面页面
-          if(t.get('driver').id==user.getObjectId())
-          {
-                wx.navigateTo({url: '../waitdriver/waitdriver'})
+      var team = SERVER.Object.createWithoutData('User', user.id).fetch().then(function (t) {
+          var isregistered = t.get('isRegistered');
+          console.log('isregistered:' + isregistered);
+
+          //判断是否注册，若未注册则进入注册界面
+          if (isregistered != true) {
+            console.log('enter regist page');
+            wx.redirectTo({ url: '../regist/regist' });
           }
-          //否则定位到乘客等待页面
-          else
-          {
-                wx.navigateTo({url: '../waitpassager/waitpassager'})
+          if (teamid != '') {
+            //获取行程对象        
+            var team = SERVER.Object.createWithoutData('Team', teamid).fetch().then(function (t) {
+              //为全局team变量赋值
+              var app = getApp();
+              app.globalData.team = t;
+              console.log('teamdid:' + t.get('driver').id);
+              console.log('uid:' + user.getObjectId());
+              //判断userid与司机id是否一致，如果一致，显示司机等待页面页面
+              if (t.get('driver').id == user.getObjectId()) {
+                console.log('enter waitdriver page');
+                wx.navigateTo({ url: '../waitdriver/waitdriver' })
+              }
+              //否则定位到乘客等待页面
+              else {
+                console.log('waitpassager regist page');
+                wx.navigateTo({ url: '../waitpassager/waitpassager' })
+              }
+            });
           }
         });
-      }
      })
     //处理异常
     .catch(error => console.error(error.message));
