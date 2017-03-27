@@ -58,7 +58,7 @@ Page({
     onUnload:function(){
         this.passengerCancelTeam();
         wx.showToast({
-            title: '退出行程',
+            title: '退出活动',
             icon: 'success',
             duration: 2000
         })
@@ -89,7 +89,7 @@ Page({
         }).catch(console.error);
     },
 
-    //给司机拨打电话
+    //给队长拨打电话
     bindCallDriver:function(e){
         var iphone = e.currentTarget.dataset.num;
         console.log("----phone :" + iphone);
@@ -100,7 +100,7 @@ Page({
             })
         }
     },
-    //给乘客拨打电话
+    //给成员拨打电话
     bindCallPassager:function(e){
         
         var iphone = e.currentTarget.dataset.num;
@@ -116,7 +116,7 @@ Page({
     //刷新按钮事件
     bindDriverRefreshBtn:function(e){
         wx.showNavigationBarLoading()
-        console.log('触发了乘客刷新按钮')
+        console.log('触发了队员刷新按钮')
         this.loadTeamInfo();
         setTimeout(function(){wx.hideNavigationBarLoading();wx.stopPullDownRefresh();}, 2000);
     },   
@@ -127,13 +127,13 @@ Page({
 
         //取消按钮事件
     bindDriverCancelBtn:function(e){
-        console.log('触发了乘客取消按钮')
+        console.log('触发了队员取消按钮')
         var that = this;
 
-        //弹出提示框，提示是否取消顺风车服务
+        //弹出提示框，提示是否取消
         wx.showModal({
             title: '确认取消',
-            content: '请确认是否离开当前顺风车',
+            content: '请确认是否离开当前活动',
             confirmText: "确认",
             cancelText: "取消",
             success: function (res) {

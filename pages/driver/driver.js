@@ -41,6 +41,7 @@ Page({
             this.setData({imgUrl:imgurl})
         }
         var driverTel = wx.getStorageSync('tel')
+		var phone = wx.getStorageSync('phone')
         var driverCarNum = wx.getStorageSync('carnum')
         var driverCarColor = wx.getStorageSync('carcolor')
         if(!driverCarColor){
@@ -58,7 +59,7 @@ Page({
         //缓存数据赋值给页面的data
         this.setData({
             name:driverName,
-            telephone: driverTel,
+            telephone: phone,
             carNum: driverCarNum,
             index_carColor:driverCarColor,
             carType:driverCarType,

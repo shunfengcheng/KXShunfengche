@@ -1,9 +1,9 @@
 <view style='background-color:#f8f8f8'>
 <view class="userinfo">
     <image class="userinfo-avatar" src="{{imgUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">欢迎{{name}} 提供顺风车</text>
+    <text class="userinfo-nickname">欢迎{{name}} 发起活动</text>
 </view>
-<view class='trip_title'>行程信息</view>
+<view class='trip_title'>活动信息</view>
 <view class="driver_infos" style='background-color:#ffffff'>
     <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
@@ -29,7 +29,7 @@
     </view>
     <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
-            <view class="driver_infor_label">  座 位 数</view>
+            <view class="driver_infor_label"> 名   额</view>
         </view>
         <view class="weui-cell__bd">
             <picker style='float:right;' mode="selector" bindchange="bindSeatNumChange" value="{{index_seatNum}}" range="{{array_seatNum}}">
@@ -40,7 +40,7 @@
     </view>
     <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
-            <view class="driver_infor_label">发车时间</view>
+            <view class="driver_infor_label">出发时间</view>
         </view>
         <view class="weui-cell__bd">
             <picker style='float:right;' mode="time" value="{{goTime}}" start="17：30" end="23:59" bindchange="bindGoTimeChange">
@@ -51,7 +51,7 @@
     </view> 
 </view>
 
-<view class='trip_title'>个人信息</view>
+<view class='trip_title'>联系信息</view>
 <view class="driver_infos" style='background-color:#ffffff'>
     <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
@@ -96,6 +96,6 @@
     </view>  
 </view>
 <view>
-    <button class='driver_btn' bindtap="bindStarGoBtn" hover-class="btn_tap">创建行程</button>
+    <button class='driver_btn' bindtap="bindStarGoBtn" hover-class="btn_tap">创建活动</button>
 </view>
 </view>

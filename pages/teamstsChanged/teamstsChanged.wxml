@@ -23,16 +23,16 @@
 </view-->
 
 <view style='background-color:#f8f8f8'>
-    <view class='title_style'>您{{act}}的行程已{{sts}}</view>
+    <view class='title_style'>您{{act}}的活动已{{sts}}</view>
     <view class='driverInfo'>
         <text class='trip_base'>出发地点：{{team.start}}<br />
         目的地点：{{team.end}}<br />
-        发车时间：{{team.goTime}}</text>
+        出发时间：{{team.goTime}}</text>
     </view>
   
-    <view class='title_style' style='margin-top:40px'>搭乘专列的开心们</view>
+    <view class='title_style' style='margin-top:40px'>您的队友</view>
     <view wx:if="{{team.passengers.length == 0}}">
-        <text style='color: #ff6666; margin-left:20px;'>暂无开心搭乘专列</text>
+        <text style='color: #ff6666; margin-left:20px;'>暂无队友</text>
     </view>
     <view wx:else>
         <view class="passagerInfo" wx:for="{{team.passengers}}" hidden='{{item.name =="noPassenger"}}'>
@@ -46,13 +46,13 @@
         </view>
     </view>    
     
-    <view class='title_style' style='margin-top:40px'>列车长信息</view>
+    <view class='title_style' style='margin-top:40px'>队长信息</view>
     <view class='driverInfo'>
         <image class="image_style" src="{{team.driver.img}}" ></image>
         <view style='margin-left:5px'>
             <text class='text_base'>{{team.driver.name}}</text>
             <text class='text_detail'>电话：{{team.driver.phone}}</text>
-            <text class='text_detail'>车牌号：{{team.driver.carnum}}  {{team.driver.carcolor}},车型：{{team.driver.cartype}}</text>
+            <text class='text_detail'>车牌号：{{team.driver.carnum}}  {{team.driver.carcolor}}.{{team.driver.cartype}}</text>
         </view>
     </view>
     <view style='margin-bottom:50px'>
