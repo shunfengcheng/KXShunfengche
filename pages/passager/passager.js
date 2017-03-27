@@ -128,8 +128,8 @@ Page({
         //获取行程对象
         console.log(e.currentTarget.id)
         var team = SERVER.Object.createWithoutData('Team', e.currentTarget.id).fetch().then(function (t) {
-            //判断行程状态为N当前乘客数目<4
-            //是-》插入乘客数据，赋值给全局变量记录用户的当前行程id，页面跳转
+            //判断活动状态为N当前队员数目<4
+            //是-》插入成员数据，赋值给全局变量记录用户的当前行程id，页面跳转
             if( t.get('teamsts')=='N' && t.get('passengers').length<t.get('seatnum') )
             {
                 console.log('ok')
@@ -153,7 +153,7 @@ Page({
                 //console.log(user)
                 var app = getApp();
                 app.globalData.team = t;
-                //页面定向到乘车页
+                //页面定向到报名页
                 wx.navigateTo({
                     url: '../waitpassager/waitpassager'
                 })
@@ -161,8 +161,8 @@ Page({
             else//否-》报错并刷新
             {
                 wx.showModal({
-                                title: '行程已失效',
-                                content: '已发车或满员或行程取消',
+                                title: '活动已失效',
+                                content: '已出发或满员或活动取消',
                                 showCancel:false,
                                 success: function(res) {
                                     that.loadTeams();

@@ -1,5 +1,5 @@
 <view style='background-color:#f8f8f8'>
-    <view class='title_style'>与您一路的开心er</view>
+    <view class='title_style'>与您组队的开心er</view>
     <view wx:if="{{team.passengers.length == 0}}">
         <text style='color: #ff6666; margin-left:10px;margin-top:50px;'>开心们刚完成工作，请稍等...</text>
     </view>
@@ -13,15 +13,15 @@
             <image class="image_style_1" src="../../utils/phone.jpg" bindtap="bindCallPassager" data-num="{{item.phone}}"></image>       
         </view>
     </view>
-    <view class='title_style' style='margin-top:40px'>您的列车长</view>
+    <view class='title_style' style='margin-top:40px'>您的队长</view>
     <view class='driverInfo'>
         <image class="image_style" src="{{team.driver.img}}" ></image>
         <view>
             <text class='text_base'>{{team.driver.name}}</text>
             <text class='text_detail'>电话：{{team.driver.phone}}<br/>
-            {{team.start}}出发，途经{{team.end}}</text>
-            <text class='text_detail_gotime' >发车时间{{team.goTime}}</text>
-            <text class='text_detail'>车牌号：{{team.driver.carnum}}  {{team.driver.carcolor}},车型：{{team.driver.cartype}}</text>
+            {{team.start}}出发，前往{{team.end}}</text>
+            <text class='text_detail_gotime' >出发时间{{team.goTime}}</text>
+            <text class='text_detail'>车牌号：{{team.driver.carnum}}  {{team.driver.carcolor}}.{{team.driver.cartype}}</text>
         </view>
         <image class="image_style_1" src="../../utils/phone.jpg" bindtap="bindCallDriver" data-num="{{team.driver.phone}}"></image>
     </view>
